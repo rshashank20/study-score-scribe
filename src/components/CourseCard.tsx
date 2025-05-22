@@ -30,9 +30,19 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onGradeChange, onRemove
             <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
               {course.code}
             </span>
+            {course.department && (
+              <span className="text-xs font-medium text-blue-500 bg-blue-50 px-2 py-0.5 rounded ml-2">
+                {course.department}
+              </span>
+            )}
           </div>
           <h3 className="font-medium mt-1 text-gray-800">{course.name}</h3>
-          <div className="text-sm text-gray-600 mt-1">Credits: {course.credits}</div>
+          <div className="flex text-sm text-gray-600 mt-1">
+            <span>Credits: {course.credits}</span>
+            {course.term && (
+              <span className="ml-2">Term: {course.term}</span>
+            )}
+          </div>
         </div>
         
         <div className="ml-4 w-24">

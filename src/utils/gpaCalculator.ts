@@ -88,6 +88,23 @@ export const generateSampleCourses = (branchId: string, semesterId: number): Cou
     }
   }
   
+  // For Industrial Engineering and Management branch
+  if (branchId === 'iem') {
+    if (semesterId === 3) { // Term 3 from the image
+      return [
+        { id: 'iem1', code: '23IM3PCEMM', name: 'Engineering Materials And Mechanics', credits: 4, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem2', code: '23IM3PCIME', name: 'Industrial Metrology', credits: 3, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem3', code: '23IM3PCMAP', name: 'Manufacturing Process', credits: 4, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem4', code: '23IM3PCCMD', name: 'Computer Aided Machine Drawing', credits: 3, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem5', code: '24NCMC3TA1', name: 'Theatre Arts -I', credits: 0, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem6', code: '23MA3BSTFN', name: 'Transform Calculus, Fourier Series And Numerical Techniques', credits: 3, department: 'MAT', term: 3, grade: undefined },
+        { id: 'iem7', code: '23IM3BSBFE', name: 'Biology For Engineers', credits: 1, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem8', code: '23IM3ESEPS', name: 'Elements Of Power Systems', credits: 3, department: 'IM', term: 3, grade: undefined },
+        { id: 'iem9', code: '23IM3AEOET', name: 'Overview Of Emerging Technologies', credits: 1, department: 'IM', term: 3, grade: undefined },
+      ];
+    }
+  }
+  
   // Default case
   return baseCourses;
 };

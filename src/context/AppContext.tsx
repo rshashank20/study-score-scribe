@@ -11,6 +11,7 @@ const branches: Branch[] = [
   { id: 'me', name: 'Mechanical Engineering' },
   { id: 'ce', name: 'Civil Engineering' },
   { id: 'ee', name: 'Electrical Engineering' },
+  { id: 'iem', name: 'Industrial Engineering and Management' },
 ];
 
 const semesters: Semester[] = Array.from({ length: 8 }, (_, i) => ({

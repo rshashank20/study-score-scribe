@@ -21,6 +21,8 @@ export type Course = {
   code: string;
   name: string;
   credits: number;
+  department?: string;
+  term?: number;
   grade?: Grade;
 };
 
