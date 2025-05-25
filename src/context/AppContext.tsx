@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Branch, Course, Grade, Semester, SemesterResult } from '../types';
 import { calculateSGPA, calculateCGPA, generateSampleCourses } from '../utils/gpaCalculator';
@@ -6,12 +5,24 @@ import { useToast } from '@/components/ui/use-toast';
 
 // Sample data
 const branches: Branch[] = [
-  { id: 'cse', name: 'Computer Science Engineering' },
-  { id: 'ece', name: 'Electronics & Communication Engineering' },
-  { id: 'me', name: 'Mechanical Engineering' },
-  { id: 'ce', name: 'Civil Engineering' },
-  { id: 'ee', name: 'Electrical Engineering' },
+  { id: 'civil', name: 'Civil Engineering' },
+  { id: 'mech', name: 'Mechanical Engineering' },
+  { id: 'eee', name: 'Electrical and Electronics Engineering' },
+  { id: 'ece', name: 'Electronics and Communication Engineering' },
   { id: 'iem', name: 'Industrial Engineering and Management' },
+  { id: 'cse', name: 'Computer Science and Engineering' },
+  { id: 'ete', name: 'Electronics and Telecommunication Engineering' },
+  { id: 'ise', name: 'Information Science and Engineering' },
+  { id: 'eie', name: 'Electronics and Instrumentation Engineering' },
+  { id: 'med', name: 'Medical Electronics Engineering' },
+  { id: 'chem', name: 'Chemical Engineering' },
+  { id: 'bio', name: 'Bio-Technology' },
+  { id: 'aero', name: 'Aerospace Engineering' },
+  { id: 'ml', name: 'Machine Learning (AI and ML)' },
+  { id: 'cseds', name: 'Computer Science and Engineering (DS)' },
+  { id: 'cseiot', name: 'Computer Science and Engineering (IoT and CS)' },
+  { id: 'aids', name: 'Artificial Intelligence and Data Science' },
+  { id: 'csebs', name: 'Computer Science and Business Systems' }
 ];
 
 const semesters: Semester[] = Array.from({ length: 8 }, (_, i) => ({
