@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { Branch, Course, Grade, Semester, SemesterResult } from '../types';
 import { calculateSGPA, calculateCGPA, generateSampleCourses } from '../utils/gpaCalculator';
 import { useToast } from '@/components/ui/use-toast';
-import { storage } from '@/utils/storage';
 
 // Sample data
 const branches: Branch[] = [
@@ -62,33 +61,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [courses, setCourses] = useState<Course[]>([]);
   const [semesterResults, setSemesterResults] = useState<SemesterResult[]>([]);
   const { toast } = useToast();
-
-  // Load saved data on mount
-  useEffect(() => {
-    const savedCourses = storage.getCourses();
-    const savedResults = storage.getSemesterResults();
-    
-    if (savedCourses.length > 0) {
-      setCourses(savedCourses);
-    }
-    if (savedResults.length > 0) {
-      setSemesterResults(savedResults);
-    }
-  }, []);
-
-  // Save courses whenever they change
-  useEffect(() => {
-    if (courses.length > 0) {
-      storage.saveCourses(courses);
-    }
-  }, [courses]);
-
-  // Save semester results whenever they change
-  useEffect(() => {
-    if (semesterResults.length > 0) {
-      storage.saveSemesterResults(semesterResults);
-    }
-  }, [semesterResults]);
 
   const setSelectedBranch = (branch: Branch) => {
     setSelectedBranchState(branch);
@@ -191,28 +163,28 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return calculateCGPA(semesterResults);
   };
 
+  const value = {
+    branches,
+    semesters,
+    selectedBranch,
+    selectedSemester,
+    courses,
+    semesterResults,
+    setSelectedBranch,
+    setSelectedSemester,
+    setCourses,
+    updateCourseGrade,
+    addCustomCourse,
+    calculateAndSaveSemester,
+    removeCourse,
+    resetCurrentSelection,
+    updateSemesterResult,
+    removeSemesterResult,
+    calculateCGPA: calculateCGPAValue,
+  };
+
   return (
-    <AppContext.Provider
-      value={{
-        branches,
-        semesters,
-        selectedBranch,
-        selectedSemester,
-        courses,
-        semesterResults,
-        setSelectedBranch,
-        setSelectedSemester,
-        setCourses,
-        updateCourseGrade,
-        addCustomCourse,
-        calculateAndSaveSemester,
-        removeCourse,
-        resetCurrentSelection,
-        updateSemesterResult,
-        removeSemesterResult,
-        calculateCGPA: calculateCGPAValue,
-      }}
-    >
+    <AppContext.Provider value={value}>
       {children}
     </AppContext.Provider>
   );
