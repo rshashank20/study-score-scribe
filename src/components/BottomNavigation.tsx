@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Calculator, BookOpen, HelpCircle, Settings } from 'lucide-react';
+import { Home, Calculator, BookOpen, HelpCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const BottomNavigation = () => {
@@ -11,7 +10,6 @@ const BottomNavigation = () => {
       <NavItem to="/sgpa" icon={<Calculator size={20} />} label="SGPA" />
       <NavItem to="/cgpa" icon={<BookOpen size={20} />} label="CGPA" />
       <NavItem to="/instructions" icon={<HelpCircle size={20} />} label="Help" />
-      <NavItem to="/settings" icon={<Settings size={20} />} label="Settings" />
     </div>
   );
 };

@@ -1,73 +1,74 @@
-# Welcome to your Lovable project
+# SGPA & CGPA Calculator 🎓
 
-## Project info
+A modern, student-friendly web app to calculate your Semester GPA (SGPA) and Cumulative GPA (CGPA) with ease. Built for college students who want a beautiful, fast, and mobile-ready experience!
 
-**URL**: https://lovable.dev/projects/f01463c0-de7e-4018-8835-7e381ea150e1
+---
 
-## How can I edit this code?
+## 🚀 Features
+- Calculate SGPA for each semester
+- Track and visualize your CGPA over time
+- Add, edit, and remove courses and results
+- Clean, responsive UI (works great on mobile and desktop)
+- No more manual calculations or messy spreadsheets!
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🛠️ Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f01463c0-de7e-4018-8835-7e381ea150e1) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### 1. Clone the repository
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+git clone https://github.com/your-username/sgpa-cgpa-calculator.git
+cd sgpa-cgpa-calculator
 ```
 
-**Edit a file directly in GitHub**
+### 2. Install dependencies
+```sh
+npm install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 3. Start the development server
+```sh
+npm run dev
+```
+- Frontend: [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal)
+- Backend: [http://localhost:4000](http://localhost:4000) (if using the backend)
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📦 Project Structure
+```
+/ (root)
+  ├─ backend/         # Node.js + Express backend (optional)
+  ├─ src/             # Frontend source code (React/Vite)
+  ├─ public/          # Static assets
+  ├─ package.json     # Project config
+  └─ ...
+```
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## ✨ Screenshots
+![Home](./screenshots/home.png)
+![SGPA Input](./screenshots/sgpa-input.png)
+![CGPA Dashboard](./screenshots/cgpa-dashboard.png)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 🤝 Contributing
+Pull requests are welcome! If you have ideas for new features or want to help improve the app, just fork the repo and submit a PR.
 
-Simply open [Lovable](https://lovable.dev/projects/f01463c0-de7e-4018-8835-7e381ea150e1) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📣 Credits
+- Built with [React](https://react.dev/), [Vite](https://vitejs.dev/), and [Tailwind CSS](https://tailwindcss.com/)
+- Icons by [Lucide](https://lucide.dev/)
+- Special thanks to all student testers!
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📬 Contact
+Have questions or want to suggest a feature? Open an issue or email [your-email@example.com](mailto:your-email@example.com)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+**Enjoy stress-free GPA calculations! 🎉**

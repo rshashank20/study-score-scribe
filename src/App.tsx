@@ -15,7 +15,6 @@ import CourseInputScreen from "./pages/CourseInputScreen";
 import SGPAResultScreen from "./pages/SGPAResultScreen";
 import CGPAScreen from "./pages/CGPAScreen";
 import InstructionsScreen from "./pages/InstructionsScreen";
-import SettingsScreen from "./pages/SettingsScreen";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,7 +34,6 @@ const App = () => (
               <Route path="/sgpa-result" element={<SGPAResultScreen />} />
               <Route path="/cgpa" element={<CGPAScreen />} />
               <Route path="/instructions" element={<InstructionsScreen />} />
-              <Route path="/settings" element={<SettingsScreen />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
