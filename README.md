@@ -15,39 +15,4 @@ Built for college students who want a fast, beautiful, and stress-free way to ma
 
 ---
 
-## ⚙️ Getting Started
-
-```bash
-git clone https://github.com/rshashank20/study-score-scribe.git
-cd study-score-scribe
-npm install
-npm run dev
-```
-
-- Frontend: http://localhost:5173  
-- Backend (optional): http://localhost:4000
-
----
-
-## 🛠 Built With
-
-- React
-- Vite
-- Tailwind CSS
-- Lucide Icons
-
----
-
-## 🤝 Contribute
-
-Pull requests are welcome! Fork the repo, make changes, and submit a PR.
-
----
-
-## 📬 Contact
-
-For questions or suggestions: `youremail@domain.com`
-
----
-
 **🎉 Study smart. Stress less.**
