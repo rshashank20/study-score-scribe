@@ -106,10 +106,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       grade: undefined
     };
     setCourses(prevCourses => [...prevCourses, newCourse]);
-    toast({
-      title: "Course added",
-      description: `${name} has been added to your courses.`,
-    });
+    // toast({
+    //   title: "Course added",
+    //   description: `${name} has been added to your courses.`,
+    // });
   };
 
   const removeCourse = (courseId: string) => {
@@ -146,10 +146,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     };
 
     setSemesterResults(prev => [...prev, newResult]);
-    toast({
-      title: "Semester saved",
-      description: `Your ${selectedSemester.name} results have been saved.`,
-    });
+    // toast({
+    //   title: "Semester saved",
+    //   description: `Your ${selectedSemester.name} results have been saved.`,
+    // });
   };
 
   const updateSemesterResult = (semesterId: number, sgpa: number, totalCredits: number) => {
