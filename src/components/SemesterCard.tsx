@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SemesterResult } from '@/types';
 import { Button } from '@/components/ui/button';
@@ -28,7 +27,7 @@ const SemesterCard: React.FC<SemesterCardProps> = ({ semesterResult, onRemove })
       <div className="flex items-center justify-between mt-2">
         <div className="bg-app-blue/10 rounded-md px-3 py-1">
           <span className="text-sm text-app-blue">SGPA</span>
-          <div className="text-xl font-bold text-app-blue">{semesterResult.sgpa}</div>
+          <div className="text-xl font-bold text-app-blue">{semesterResult.sgpa.toFixed(2)}</div>
         </div>
         
         <div className="bg-gray-100 rounded-md px-3 py-1">
