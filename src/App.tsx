@@ -1,10 +1,10 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
+import { ThemeProvider } from "next-themes";
 
 // Layouts
 import AppLayout from "./components/AppLayout";
@@ -23,26 +23,28 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AppProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route path="/" element={<WelcomeScreen />} />
-              <Route path="/sgpa" element={<BranchSemesterSelection />} />
-              <Route path="/course-input" element={<CourseInputScreen />} />
-              <Route path="/sgpa-result" element={<SGPAResultScreen />} />
-              <Route path="/cgpa" element={<CGPAScreen />} />
-              <Route path="/instructions" element={<InstructionsScreen />} />
-              <Route path="/settings" element={<SettingsScreen />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AppProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <AppProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route path="/" element={<WelcomeScreen />} />
+                <Route path="/sgpa" element={<BranchSemesterSelection />} />
+                <Route path="/course-input" element={<CourseInputScreen />} />
+                <Route path="/sgpa-result" element={<SGPAResultScreen />} />
+                <Route path="/cgpa" element={<CGPAScreen />} />
+                <Route path="/instructions" element={<InstructionsScreen />} />
+                <Route path="/settings" element={<SettingsScreen />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AppProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
