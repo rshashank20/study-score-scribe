@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Course, Grade } from '@/types';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -12,6 +11,17 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course, onGradeChange, onRemove, canRemove = false }) => {
+  const gradeOptions: Grade[] = [
+    { letter: 'O', value: 10 },
+    { letter: 'A+', value: 9 },
+    { letter: 'A', value: 8 },
+    { letter: 'B+', value: 7 },
+    { letter: 'B', value: 6 },
+    { letter: 'C', value: 5 },
+    { letter: 'P', value: 4 },
+    { letter: 'F', value: 0 }
+  ];
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 mb-3 relative slide-in">
       {canRemove && (
@@ -47,21 +57,23 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onGradeChange, onRemove
         
         <div className="ml-4 w-24">
           <Select
-            value={course.grade}
-            onValueChange={(value) => onGradeChange(value as Grade)}
+            value={course.grade?.letter}
+            onValueChange={(value) => {
+              const selectedGrade = gradeOptions.find(g => g.letter === value);
+              if (selectedGrade) {
+                onGradeChange(selectedGrade);
+              }
+            }}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Grade" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="O">O</SelectItem>
-              <SelectItem value="A+">A+</SelectItem>
-              <SelectItem value="A">A</SelectItem>
-              <SelectItem value="B+">B+</SelectItem>
-              <SelectItem value="B">B</SelectItem>
-              <SelectItem value="C">C</SelectItem>
-              <SelectItem value="P">P</SelectItem>
-              <SelectItem value="F">F</SelectItem>
+              {gradeOptions.map(grade => (
+                <SelectItem key={grade.letter} value={grade.letter}>
+                  {grade.letter}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
