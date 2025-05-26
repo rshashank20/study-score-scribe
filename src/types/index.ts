@@ -8,10 +8,7 @@ export type Semester = {
   name: string;
 };
 
-export type Grade = {
-  letter: 'O' | 'A+' | 'A' | 'B+' | 'B' | 'C' | 'P' | 'F';
-  value: number;
-};
+export type Grade = 'O' | 'A+' | 'A' | 'B+' | 'B' | 'C' | 'P' | 'F';
 
 export type GradePoint = {
   grade: Grade;

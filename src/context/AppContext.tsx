@@ -30,6 +30,17 @@ const semesters: Semester[] = Array.from({ length: 8 }, (_, i) => ({
   name: `Semester ${i + 1}`,
 }));
 
+const gradePoints: Record<Grade, number> = {
+  'O': 10,
+  'A+': 9,
+  'A': 8,
+  'B+': 7,
+  'B': 6,
+  'C': 5,
+  'P': 4,
+  'F': 0
+};
+
 // Context type
 type AppContextType = {
   branches: Branch[];
@@ -121,7 +132,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const totalCredits = courses.reduce((sum, course) => sum + course.credits, 0);
     const weightedSum = courses.reduce((sum, course) => {
       if (!course.grade) return sum;
-      return sum + (course.credits * course.grade.value);
+      return sum + (course.credits * gradePoints[course.grade]);
     }, 0);
 
     const sgpa = weightedSum / totalCredits;

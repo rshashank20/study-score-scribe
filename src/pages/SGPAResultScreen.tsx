@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -69,6 +68,7 @@ const SGPAResultScreen = () => {
             <AnimatedNumber 
               value={currentResult.sgpa} 
               className="text-4xl font-bold text-app-blue"
+              formatValue={val => val.toFixed(2)}
             />
             <span className="text-4xl font-bold text-app-blue">/10</span>
           </div>
