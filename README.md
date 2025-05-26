@@ -1,6 +1,7 @@
 🎓 Study Score Scribe – SGPA & CGPA Calculator
+<br>
 A sleek, mobile-ready web app to calculate and track your SGPA & CGPA effortlessly. Designed for college students who want a fast, beautiful, and stress-free way to manage academic scores.
-
+<br>
 🚀 Features
 📘 SGPA Calculator – Add courses and grades per semester
 
