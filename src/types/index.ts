@@ -1,4 +1,3 @@
-
 export type Branch = {
   id: string;
   name: string;
@@ -9,7 +8,10 @@ export type Semester = {
   name: string;
 };
 
-export type Grade = 'O' | 'A+' | 'A' | 'B+' | 'B' | 'C' | 'P' | 'F';
+export type Grade = {
+  letter: 'O' | 'A+' | 'A' | 'B+' | 'B' | 'C' | 'P' | 'F';
+  value: number;
+};
 
 export type GradePoint = {
   grade: Grade;

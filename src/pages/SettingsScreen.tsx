@@ -1,19 +1,46 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import PageTitle from '@/components/PageTitle';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { storage } from '@/utils/storage';
 
 const SettingsScreen = () => {
   const { toast } = useToast();
-  
+  const [settings, setSettings] = useState({
+    notifications: true,
+    userName: '',
+    userEmail: '',
+  });
+
+  // Load settings on component mount
+  useEffect(() => {
+    const savedSettings = storage.getSettings();
+    setSettings(savedSettings);
+  }, []);
+
   const handleSave = () => {
+    storage.saveSettings(settings);
     toast({
       title: "Settings saved",
       description: "Your preferences have been updated successfully.",
     });
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setSettings(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSwitchChange = (field: string, checked: boolean) => {
+    setSettings(prev => ({
+      ...prev,
+      [field]: checked
+    }));
   };
   
   return (
@@ -32,7 +59,11 @@ const SettingsScreen = () => {
               <Label htmlFor="notifications" className="text-gray-700">Notifications</Label>
               <p className="text-xs text-gray-500">Receive updates and reminders</p>
             </div>
-            <Switch id="notifications" defaultChecked />
+            <Switch 
+              id="notifications" 
+              checked={settings.notifications}
+              onCheckedChange={(checked) => handleSwitchChange('notifications', checked)}
+            />
           </div>
         </div>
         
@@ -41,12 +72,23 @@ const SettingsScreen = () => {
           
           <div className="space-y-2">
             <Label htmlFor="user-name">Name</Label>
-            <Input id="user-name" placeholder="Enter your name" />
+            <Input 
+              id="user-name" 
+              placeholder="Enter your name"
+              value={settings.userName}
+              onChange={(e) => handleInputChange('userName', e.target.value)}
+            />
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="user-email">Email</Label>
-            <Input id="user-email" type="email" placeholder="Enter your email" />
+            <Input 
+              id="user-email" 
+              type="email" 
+              placeholder="Enter your email"
+              value={settings.userEmail}
+              onChange={(e) => handleInputChange('userEmail', e.target.value)}
+            />
           </div>
         </div>
         

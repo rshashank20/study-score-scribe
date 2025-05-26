@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Branch, Course, Grade, Semester, SemesterResult } from '../types';
 import { calculateSGPA, calculateCGPA, generateSampleCourses } from '../utils/gpaCalculator';
 import { useToast } from '@/components/ui/use-toast';
+import { storage } from '@/utils/storage';
 
 // Sample data
 const branches: Branch[] = [
@@ -62,6 +63,33 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [semesterResults, setSemesterResults] = useState<SemesterResult[]>([]);
   const { toast } = useToast();
 
+  // Load saved data on mount
+  useEffect(() => {
+    const savedCourses = storage.getCourses();
+    const savedResults = storage.getSemesterResults();
+    
+    if (savedCourses.length > 0) {
+      setCourses(savedCourses);
+    }
+    if (savedResults.length > 0) {
+      setSemesterResults(savedResults);
+    }
+  }, []);
+
+  // Save courses whenever they change
+  useEffect(() => {
+    if (courses.length > 0) {
+      storage.saveCourses(courses);
+    }
+  }, [courses]);
+
+  // Save semester results whenever they change
+  useEffect(() => {
+    if (semesterResults.length > 0) {
+      storage.saveSemesterResults(semesterResults);
+    }
+  }, [semesterResults]);
+
   const setSelectedBranch = (branch: Branch) => {
     setSelectedBranchState(branch);
     if (selectedSemester) {
@@ -101,23 +129,31 @@ export function AppProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const removeCourse = (courseId: string) => {
+    setCourses(prevCourses => prevCourses.filter(course => course.id !== courseId));
+    toast({
+      title: "Course removed",
+      description: "The course has been removed from your list.",
+    });
+  };
+
+  const resetCurrentSelection = () => {
+    setSelectedBranchState(null);
+    setSelectedSemesterState(null);
+    setCourses([]);
+  };
+
   const calculateAndSaveSemester = () => {
-    if (!selectedSemester) return;
+    if (!selectedSemester || courses.length === 0) return;
 
-    // Check if all courses have grades
-    const allGraded = courses.every(course => course.grade);
-    if (!allGraded) {
-      toast({
-        title: "Missing grades",
-        description: "Please assign grades to all courses before calculating SGPA.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const sgpa = calculateSGPA(courses);
     const totalCredits = courses.reduce((sum, course) => sum + course.credits, 0);
-    
+    const weightedSum = courses.reduce((sum, course) => {
+      if (!course.grade) return sum;
+      return sum + (course.credits * course.grade.value);
+    }, 0);
+
+    const sgpa = weightedSum / totalCredits;
+
     const newResult: SemesterResult = {
       semesterId: selectedSemester.id,
       semesterName: selectedSemester.name,
@@ -126,40 +162,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       courses: [...courses]
     };
 
-    // Check if we're updating an existing semester or adding a new one
-    const existingIndex = semesterResults.findIndex(sr => sr.semesterId === selectedSemester.id);
-    
-    if (existingIndex >= 0) {
-      setSemesterResults(prev => [
-        ...prev.slice(0, existingIndex),
-        newResult,
-        ...prev.slice(existingIndex + 1)
-      ]);
-      toast({
-        title: "Semester updated",
-        description: `${selectedSemester.name} has been updated with SGPA: ${sgpa}`,
-      });
-    } else {
-      setSemesterResults(prev => [...prev, newResult]);
-      toast({
-        title: "Semester saved",
-        description: `${selectedSemester.name} has been saved with SGPA: ${sgpa}`,
-      });
-    }
-  };
-
-  const removeCourse = (courseId: string) => {
-    setCourses(prevCourses => prevCourses.filter(course => course.id !== courseId));
+    setSemesterResults(prev => [...prev, newResult]);
     toast({
-      title: "Course removed",
-      description: "The course has been removed from the list.",
+      title: "Semester saved",
+      description: `Your ${selectedSemester.name} results have been saved.`,
     });
-  };
-
-  const resetCurrentSelection = () => {
-    setSelectedBranchState(null);
-    setSelectedSemesterState(null);
-    setCourses([]);
   };
 
   const updateSemesterResult = (semesterId: number, sgpa: number, totalCredits: number) => {
